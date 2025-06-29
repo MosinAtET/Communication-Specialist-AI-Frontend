@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Calendar } from "lucide-react";
+import { Calendar, MessageSquare, Plus } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: Home },
-  { name: "Schedule Post", href: "/schedule-post", icon: Calendar },
+  { name: "Schedule Post", href: "/schedule-post", icon: Plus },
+  { name: "Scheduled Posts", href: "/scheduled-posts", icon: Calendar },
+  { name: "Pending Comments", href: "/pending-comments", icon: MessageSquare },
 ];
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

@@ -1,0 +1,2 @@
+[config]
+command = echo "Static site deployment - no build step needed" 
