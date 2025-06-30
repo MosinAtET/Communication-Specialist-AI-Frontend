@@ -8,7 +8,7 @@ import type {
   AIResponse,
 } from "../types";
 
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://et-ci-dev-csai-api-dnaaecbnajbab5fc.centralindia-01.azurewebsites.net/";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
