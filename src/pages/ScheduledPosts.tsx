@@ -17,6 +17,7 @@ import {
   CheckCircle,
   Loader2,
   Eye,
+  Linkedin,
 } from "lucide-react";
 
 interface ScheduledPost {
@@ -31,11 +32,13 @@ interface ScheduledPost {
 const platformIcons: Record<string, React.ReactNode> = {
   devto: <Globe className="w-4 h-4 text-blue-500" />,
   twitter: <Twitter className="w-4 h-4 text-sky-400" />,
+  linkedin: <Linkedin className="w-4 h-4 text-blue-500" />,
 };
 
 const platformNames: Record<string, string> = {
   devto: "Dev.to",
   twitter: "Twitter",
+  linkedin: "LinkedIn",
 };
 
 const ScheduledPosts: React.FC = () => {

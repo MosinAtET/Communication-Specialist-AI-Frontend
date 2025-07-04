@@ -12,6 +12,7 @@ import {
   Calendar,
   X,
   Save,
+  Linkedin,
 } from "lucide-react";
 
 const platformOptions = [
@@ -25,16 +26,23 @@ const platformOptions = [
     label: "Twitter",
     icon: <Twitter className="w-5 h-5 text-sky-400" />,
   },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    icon: <Linkedin className="w-5 h-5 text-blue-500" />,
+  },
 ];
 
 const platformIcons: Record<string, React.ReactNode> = {
   devto: <Globe className="w-4 h-4 text-blue-500" />,
   twitter: <Twitter className="w-4 h-4 text-sky-400" />,
+  linkedin: <Linkedin className="w-4 h-4 text-blue-500" />,
 };
 
 const platformNames: Record<string, string> = {
   devto: "Dev.to",
   twitter: "Twitter",
+  linkedin: "LinkedIn",
 };
 
 const MAX_PROMPT_LENGTH = 500;
