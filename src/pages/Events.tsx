@@ -30,6 +30,15 @@ const Events: React.FC = () => {
     is_recorded: "No",
   });
 
+  const [editFormData, setEditFormData] = useState<UpdateEventRequest>({
+    title: "",
+    date: "",
+    time: "",
+    description: "",
+    registration_link: "",
+    is_recorded: "No",
+  });
+
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -67,7 +76,10 @@ const Events: React.FC = () => {
     if (!editingEvent) return;
 
     try {
-      const updatedEvent = await updateEvent(editingEvent.event_id, formData);
+      const updatedEvent = await updateEvent(
+        editingEvent.event_id,
+        editFormData
+      );
       setEvents(
         events.map((event) =>
           event.event_id === editingEvent.event_id ? updatedEvent : event
@@ -75,7 +87,7 @@ const Events: React.FC = () => {
       );
       setShowEditModal(false);
       setEditingEvent(null);
-      resetForm();
+      resetEditForm();
       setError(null);
     } catch (err) {
       setError("Failed to update event");
@@ -97,7 +109,7 @@ const Events: React.FC = () => {
 
   const openEditModal = (event: EventDetails) => {
     setEditingEvent(event);
-    setFormData({
+    setEditFormData({
       title: event.title,
       date: event.date.split(" ")[0], // Extract date part
       time: event.time.split(" ")[0], // Extract time part
@@ -110,6 +122,17 @@ const Events: React.FC = () => {
 
   const resetForm = () => {
     setFormData({
+      title: "",
+      date: "",
+      time: "",
+      description: "",
+      registration_link: "",
+      is_recorded: "No",
+    });
+  };
+
+  const resetEditForm = () => {
+    setEditFormData({
       title: "",
       date: "",
       time: "",
@@ -392,9 +415,12 @@ const Events: React.FC = () => {
                   <input
                     type="text"
                     required
-                    value={formData.title}
+                    value={editFormData.title}
                     onChange={(e) =>
-                      setFormData({ ...formData, title: e.target.value })
+                      setEditFormData({
+                        ...editFormData,
+                        title: e.target.value,
+                      })
                     }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -408,9 +434,12 @@ const Events: React.FC = () => {
                     <input
                       type="date"
                       required
-                      value={formData.date}
+                      value={editFormData.date}
                       onChange={(e) =>
-                        setFormData({ ...formData, date: e.target.value })
+                        setEditFormData({
+                          ...editFormData,
+                          date: e.target.value,
+                        })
                       }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -422,9 +451,12 @@ const Events: React.FC = () => {
                     <input
                       type="time"
                       required
-                      value={formData.time}
+                      value={editFormData.time}
                       onChange={(e) =>
-                        setFormData({ ...formData, time: e.target.value })
+                        setEditFormData({
+                          ...editFormData,
+                          time: e.target.value,
+                        })
                       }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
@@ -436,9 +468,12 @@ const Events: React.FC = () => {
                     Description
                   </label>
                   <textarea
-                    value={formData.description}
+                    value={editFormData.description}
                     onChange={(e) =>
-                      setFormData({ ...formData, description: e.target.value })
+                      setEditFormData({
+                        ...editFormData,
+                        description: e.target.value,
+                      })
                     }
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -451,10 +486,10 @@ const Events: React.FC = () => {
                   </label>
                   <input
                     type="url"
-                    value={formData.registration_link}
+                    value={editFormData.registration_link}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
+                      setEditFormData({
+                        ...editFormData,
                         registration_link: e.target.value,
                       })
                     }
@@ -467,9 +502,12 @@ const Events: React.FC = () => {
                     Will be Recorded?
                   </label>
                   <select
-                    value={formData.is_recorded}
+                    value={editFormData.is_recorded}
                     onChange={(e) =>
-                      setFormData({ ...formData, is_recorded: e.target.value })
+                      setEditFormData({
+                        ...editFormData,
+                        is_recorded: e.target.value,
+                      })
                     }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
@@ -485,7 +523,7 @@ const Events: React.FC = () => {
                   onClick={() => {
                     setShowEditModal(false);
                     setEditingEvent(null);
-                    resetForm();
+                    resetEditForm();
                   }}
                   className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
                 >

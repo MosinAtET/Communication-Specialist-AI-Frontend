@@ -6,6 +6,8 @@ import type {
   PlatformStatus,
   DashboardStats,
   AIResponse,
+  CreateEventRequest,
+  UpdateEventRequest,
 } from "../types";
 
 const API_BASE_URL =
@@ -120,7 +122,7 @@ export const getEvent = async (eventId: string): Promise<EventDetails> => {
 };
 
 export const createEvent = async (
-  event: Omit<EventDetails, "EventID">
+  event: CreateEventRequest
 ): Promise<EventDetails> => {
   const response = await api.post("/events", event);
   return response.data;
@@ -128,7 +130,7 @@ export const createEvent = async (
 
 export const updateEvent = async (
   eventId: string,
-  event: Partial<Omit<EventDetails, "EventID">>
+  event: UpdateEventRequest
 ): Promise<EventDetails> => {
   const response = await api.put(`/events/${eventId}`, event);
   return response.data;
