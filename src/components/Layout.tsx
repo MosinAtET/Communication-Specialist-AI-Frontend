@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Calendar, MessageSquare, Plus } from "lucide-react";
+import { Calendar, MessageSquare, Plus, CalendarDays } from "lucide-react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +9,7 @@ interface LayoutProps {
 const navigation = [
   { name: "Schedule Post", href: "/schedule-post", icon: Plus },
   { name: "Scheduled Posts", href: "/scheduled-posts", icon: Calendar },
+  { name: "Events", href: "/events", icon: CalendarDays },
   { name: "Pending Comments", href: "/pending-comments", icon: MessageSquare },
 ];
 

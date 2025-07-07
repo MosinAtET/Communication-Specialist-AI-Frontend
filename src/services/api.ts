@@ -8,7 +8,10 @@ import type {
   AIResponse,
 } from "../types";
 
-const API_BASE_URL = "https://et-ci-dev-csai-api-dnaaecbnajbab5fc.centralindia-01.azurewebsites.net/";
+const API_BASE_URL =
+  "https://et-ci-dev-csai-api-dnaaecbnajbab5fc.centralindia-01.azurewebsites.net/";
+
+// const API_BASE_URL = "http://localhost:8000";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -111,10 +114,30 @@ export const getEvents = async (): Promise<EventDetails[]> => {
   return response.data;
 };
 
+export const getEvent = async (eventId: string): Promise<EventDetails> => {
+  const response = await api.get(`/events/${eventId}`);
+  return response.data;
+};
+
 export const createEvent = async (
   event: Omit<EventDetails, "EventID">
 ): Promise<EventDetails> => {
   const response = await api.post("/events", event);
+  return response.data;
+};
+
+export const updateEvent = async (
+  eventId: string,
+  event: Partial<Omit<EventDetails, "EventID">>
+): Promise<EventDetails> => {
+  const response = await api.put(`/events/${eventId}`, event);
+  return response.data;
+};
+
+export const deleteEvent = async (
+  eventId: string
+): Promise<{ message: string }> => {
+  const response = await api.delete(`/events/${eventId}`);
   return response.data;
 };
 

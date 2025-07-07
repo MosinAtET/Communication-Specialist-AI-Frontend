@@ -20,13 +20,31 @@ export interface SocialMediaComment {
 }
 
 export interface EventDetails {
-  EventID: string;
-  Title: string;
-  Date: string;
-  Time: string;
-  Description: string;
-  RegistrationLink: string;
-  IsRecorded: string;
+  event_id: string;
+  title: string;
+  date: string;
+  time: string;
+  description: string;
+  registration_link?: string;
+  is_recorded: string;
+}
+
+export interface CreateEventRequest {
+  title: string;
+  date: string;
+  time: string;
+  description?: string;
+  registration_link?: string;
+  is_recorded?: string;
+}
+
+export interface UpdateEventRequest {
+  title?: string;
+  date?: string;
+  time?: string;
+  description?: string;
+  registration_link?: string;
+  is_recorded?: string;
 }
 
 export interface PlatformStatus {

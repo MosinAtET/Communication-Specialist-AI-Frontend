@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import SchedulePost from "./pages/SchedulePost";
 import ScheduledPosts from "./pages/ScheduledPosts";
 import PendingComments from "./pages/PendingComments";
+import Events from "./pages/Events";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/schedule-post" element={<SchedulePost />} />
           <Route path="/scheduled-posts" element={<ScheduledPosts />} />
           <Route path="/pending-comments" element={<PendingComments />} />
+          <Route path="/events" element={<Events />} />
         </Routes>
       </Layout>
     </Router>
